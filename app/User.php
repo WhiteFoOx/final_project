@@ -2,30 +2,38 @@
 
 namespace App;
 
+use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\DB;
 
 class User extends Model
 {
-    public function getBalance($id)
+    public function getBalance()
     {
-        $response = DB::table('users')
-            ->select('planning_balance')
-            ->where('users.id', '=', $id)
-            ->first();
-
-        return $this->planning_balance;
+        return $this->balance;
     }
 
-    public function getId()
+    public function setBalance(Request $request)
     {
-        return $this->getId();
+        $this->balance -= $request->input('money');
+        $this->save();
+    }
+    public function setLastTransaction(Request $request)
+    {
+        $this->last_transaction = $request->input('date');
+        $this->save();
     }
 
-    public function changeInfo()
+    public function validateUser(Request $request)
     {
+        if ($this->id == $request->input('getter')) {
+            return "Невозможно сделать перевод самому себе";
+        }
 
+        if ($this->getBalance() < 0) {
+            return "У пользователя отрицательный баланс";
+        }
+
+        return null;
     }
-
 }
 

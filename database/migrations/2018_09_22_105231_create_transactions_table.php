@@ -18,6 +18,7 @@ class CreateTransactionsTable extends Migration
             $table->integer('sender_id');
             $table->integer('getter_id');
             $table->integer('transfer_amount');
+            $table->string('status');
             $table->timestamp('transfer_date');
             $table->date('updated_at');
             $table->date('created_at');
