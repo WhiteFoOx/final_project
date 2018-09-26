@@ -7,10 +7,16 @@ class addToBaseTest extends TestCase
 {
     public function testAddUser()
     {
-        $user = new User();
-        $user->name = 'ValeraTestoviiMalii';
-        $user->balance = 3000;
-        $user->save();
+
+        $name = 'ValeraTestoviiMalii';
+        $balance = 3000;
+        $this->post(
+            '/add',
+            [
+                'name' => $name,
+                'balance' => $balance,
+            ]
+        );
         $this->seeInDatabase(
             'users', [
             'name' => 'ValeraTestoviiMalii',
@@ -34,6 +40,7 @@ class addToBaseTest extends TestCase
         $user2->name = 'EgoBratAndruha';
         $user2->balance = 1000;
         $user2->save();
+
         $testAmount = 1000;
         $testDate = Carbon::now()->format('Y-m-d H:00:00');
         $this->post(
