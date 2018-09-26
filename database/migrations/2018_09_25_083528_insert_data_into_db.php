@@ -13,18 +13,47 @@ class InsertDataIntoDb extends Migration
     public function up()
     {
         $users = [
-            ['id'=> 1, 'name' => 'User 1', 'balance' => 5000, 'updated_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s'),
-                'created_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s'),],
-            ['id'=> 2, 'name' => 'User 2', 'balance' => 4000, 'updated_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s'),
-                'created_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s'),],
-            ['id'=> 3, 'name' => 'User 3', 'balance' => 3000, 'updated_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s'),
-                'created_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s'),],
-            ['id'=> 4, 'name' => 'User 4', 'balance' => 2000, 'updated_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s'),
-                'created_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s'),],
-            ['id'=> 5, 'name' => 'User 5', 'balance' => 1000, 'updated_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s'),
-                'created_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s'),],
-            ['id'=> 6, 'name' => 'User 6', 'balance' => 6000, 'updated_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s'),
-                'created_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s'),],
+            [
+                'id'=> 1,
+                'name' => 'User 1',
+                'balance' => 5000,
+                'updated_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s'),
+                'created_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s'),
+            ],
+            [
+                'id'=> 2,
+                'name' => 'User 2',
+                'balance' => 4000,
+                'updated_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s'),
+                'created_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s'),
+            ],
+            [
+                'id'=> 3,
+                'name' => 'User 3',
+                'balance' => 3000,
+                'updated_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s'),
+                'created_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s'),
+            ],
+            [
+                'id'=> 4,
+                'name' => 'User 4',
+                'balance' => 2000,
+                'updated_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s'),
+                'created_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s'),
+            ],
+            [
+                'id'=> 5,
+                'name' => 'User 5', 'balance' => 1000,
+                'updated_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s'),
+                'created_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s'),
+            ],
+            [
+                'id'=> 6,
+                'name' => 'User 6',
+                'balance' => 6000,
+                'updated_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s'),
+                'created_at' => \Carbon\Carbon::now()->format('Y-m-d H:i:s'),
+            ],
         ];
         \DB::table('users')->insert($users);
 

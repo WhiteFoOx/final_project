@@ -19,7 +19,7 @@
                         <td>{{$user->id}}</td>
                         <td>{{$user->name}}</td>
                         <td>{{$user->balance}}</td>
-                        <td>{{$user->last_transaction ? $user->last_transaction : "Не было переводов" }}</td>
+                        <td>{{$user->getLastTransaction() ? $user->getLastTransaction()->transfer_date : "Не было переводов" }}</td>
                     </tr>
                 @endforeach
                 </tbody>

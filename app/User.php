@@ -2,35 +2,70 @@
 
 namespace App;
 
-use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Model;
 
 class User extends Model
 {
+    /**
+     * Возвращает баланс пользователя
+     *
+     * @return mixed
+     */
     public function getBalance()
     {
         return $this->balance;
     }
 
-    public function setBalance(Request $request)
+    /**
+     * Задает баланс пользователя
+     *
+     * @param int $transaction_amount
+     *
+     * @return void
+     */
+    public function setBalance($transaction_amount)
     {
-        $this->balance -= $request->input('money');
-        $this->save();
-    }
-    public function setLastTransaction(Request $request)
-    {
-        $this->last_transaction = $request->input('date');
+        $this->balance -= $transaction_amount;
         $this->save();
     }
 
-    public function validateUser(Request $request)
+    /**
+     * Задает последнюю запланированную
+     * транзакцию у пользователя
+     *
+     * @param string $transaction_date
+     *
+     * @return string
+     */
+    public function getLastTransaction()
     {
-        if ($this->id == $request->input('getter')) {
+        return static::select(\DB::raw('*'))
+            ->from('transactions')
+            ->where('sender_id', '=', $this->id)
+            ->orderBy('transfer_date', 'desc')
+            ->first();
+    }
+
+    /**
+     * Проводит валидацию пользователя
+     *
+     * @param int $getter_id
+     * @param int $transaction_amount
+     *
+     * @return string|null
+     */
+    public function validateUser($getter_id, $transaction_amount)
+    {
+        if ($this->id == $getter_id) {
             return "Невозможно сделать перевод самому себе";
         }
 
         if ($this->getBalance() < 0) {
             return "У пользователя отрицательный баланс";
+        }
+
+        if ($this->getBalance() - $transaction_amount < 0) {
+            return "У пользователя недостаточно средств для списания";
         }
 
         return null;

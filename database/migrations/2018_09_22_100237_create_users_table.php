@@ -17,7 +17,6 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->integer('balance');
-            $table->timestamp('last_transaction')->nullable();
             $table->date('updated_at');
             $table->date('created_at');
         });

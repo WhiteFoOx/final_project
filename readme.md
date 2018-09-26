@@ -10,7 +10,7 @@
 ##### Приложение реализовано с помощью фреймворка Laravel
 
 ### Установка
- (Для установки небходим composer)
+ (Все дальнейшие пункты приведены с примером, когда папка, в которой находится проект называется "final_project")
  
      1. git clone https://github.com/WhiteFoOx/final_project.git
      2. cd final_project   
@@ -30,7 +30,11 @@
    1. crontab -e    
    2. В конце файла указать
         
-            * * * * * docker exec final_project_app_1 php artisan schedule:run >> /dev/null 2>&1 
+          * * * * * docker exec final_project_app_1 php artisan schedule:run >> /dev/null 2>&1
+             
    3. Сохранить и выйти
-        
+
+### Тесты
+ 
+        docker exec final_project_app_1 ./vendor/bin/phpunit
         
